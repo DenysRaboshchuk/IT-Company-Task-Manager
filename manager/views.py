@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import generic
 
+from manager.forms import TasksSearchForm
 from manager.models import Task
 
 
@@ -11,17 +12,23 @@ from manager.models import Task
 def index(request):
     return render(request, 'pages/index.html')
 
-@login_required
-def tasks_list(request):
-    tasks_list = Task.objects.all()
-    context = {
-        "tasks_list": tasks_list
-    }
-    return render(request, 'pages/tasks_list.html', context=context)
-
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     template_name = "pages/tasks_list.html"
     paginate_by = 10
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TaskListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = TasksSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = Task.objects.all()
+        form = TasksSearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(name__icontains=form.cleaned_data["name"])
+        return queryset

@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "debug_toolbar",
     'manager',
+    'crispy_forms',
+    "crispy_bootstrap4",
 ]
 
 MIDDLEWARE = [
@@ -136,3 +138,9 @@ INTERNAL_IPS = [
 
 AUTH_USER_MODEL = "manager.Worker"
 LOGIN_REDIRECT_URL = "/tasks/"
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+# CRISPY_TEMPLATE_PACK = 'uni_form'
