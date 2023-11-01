@@ -24,7 +24,7 @@ class Task(models.Model):
     description = models.TextField()
     deadline = models.DateField()
     is_complited = models.BooleanField()
-    priority = models.CharField(max_length=255, choices=priority_chooses)
+    priority = models.CharField(max_length=255, choices=priority_chooses) #
     task_type = models.ForeignKey(
         TaskType,
         on_delete=models.CASCADE,
@@ -58,6 +58,6 @@ class Worker(AbstractUser):
     )
 
     def __str__(self):
-        return f"{self.position}: {self.username} ({self.first_name} {self.last_name}"
+        return f"{self.position}: {self.username} ({self.first_name} {self.last_name})"
 
 
