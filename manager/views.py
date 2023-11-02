@@ -17,7 +17,7 @@ def index(request):
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
-    template_name = "pages/tasks_list.html"
+    template_name = "pages/task_list.html"
     paginate_by = 10
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -38,7 +38,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
-    template_name = "pages/tasks_detail.html"
+    template_name = "pages/task_detail.html"
 
 
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):

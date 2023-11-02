@@ -16,7 +16,7 @@ class TaskSearchForm(forms.Form):
 
 class TaskForm(forms.ModelForm):
     assignees = forms.ModelMultipleChoiceField(
-        queryset=get_user_model().objects.all(),
+        queryset=get_user_model().objects.prefetch_related(),
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
@@ -28,7 +28,7 @@ class TaskForm(forms.ModelForm):
 
 class TaskFormCreate(forms.ModelForm):
     assignees = forms.ModelMultipleChoiceField(
-        queryset=get_user_model().objects.all(),
+        queryset=get_user_model().objects.prefetch_related(),
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
