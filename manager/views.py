@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
@@ -5,8 +6,9 @@ from django.urls import reverse_lazy
 
 from django.views import generic
 
-from manager.forms import TaskSearchForm, TaskForm, TaskFormCreate
-from manager.models import Task
+from manager.forms import TaskSearchForm, TaskUpdateForm, TaskFormCreate, WorkerSearchForm, WorkerCreateForm, \
+    WorkerUpdateForm
+from manager.models import Task, Worker, TaskType
 
 
 # Create your views here.
@@ -44,7 +46,7 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
     template_name = "pages/task_form.html"
-    form_class = TaskForm
+    form_class = TaskUpdateForm
     success_url = reverse_lazy("manager:tasks-list")
 
 
@@ -60,6 +62,46 @@ class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Task
     success_url = reverse_lazy("manager:tasks-list")
     template_name = "pages/task_confirm_delete.html"
+
+
+class WorkerListView(LoginRequiredMixin, generic.ListView):
+    model = Worker
+    template_name = "pages/worker_list.html"
+    paginate_by = 10
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(WorkerListView, self).get_context_data(**kwargs)
+        username = self.request.GET.get("username", "")
+        context["search_form"] = WorkerSearchForm(
+            initial={"username": username}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = get_user_model().objects.all()
+        form = WorkerSearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(username__icontains=form.cleaned_data["username"])
+        return queryset
+
+
+class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Worker
+    template_name = "pages/worker_detail.html"
+
+
+class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Worker
+    success_url = reverse_lazy("manager:worker-list")
+    template_name = "pages/worker_form.html"
+    form_class = WorkerCreateForm
+
+
+class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Worker
+    success_url = reverse_lazy("manager:worker-list")
+    template_name = "pages/worker_form.html"
+    form_class = WorkerUpdateForm
 
 
 
