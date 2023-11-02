@@ -21,9 +21,9 @@ class Task(models.Model):
         ("LP", "Low Priority"),
     ]
     name = models.CharField(max_length=255)
-    description = models.TextField()
     deadline = models.DateField()
     is_complited = models.BooleanField()
+    description = models.TextField()
     priority = models.CharField(max_length=255, choices=priority_chooses) #
     task_type = models.ForeignKey(
         TaskType,
