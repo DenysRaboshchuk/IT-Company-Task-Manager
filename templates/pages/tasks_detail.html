@@ -8,6 +8,8 @@
       <div class="dropdown">
         <a class="btn btn-secondary d-inline-flex align-items-center me-2 dropdown-toggle"
            href="{% url 'manager:tasks-update' pk=task.id %}">Update info</a>
+        <a class="btn btn-danger d-inline-flex align-items-center me-2 dropdown-toggle"
+           href="{% url 'manager:tasks-delete' pk=task.id %}">Delete task</a>
       </div>
     </div>
   </div>
@@ -22,7 +24,6 @@
                 <label>Name</label>
                 <br>
                 <span>{{ task.name }}</span>
-                {#                <input class="form-control" id="first_name" type="text" placeholder="Enter your first name" required>#}
               </div>
             </div>
             <div class="col-md-6 mb-3">

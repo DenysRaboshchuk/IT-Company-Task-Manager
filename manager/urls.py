@@ -7,6 +7,7 @@ from manager.views import (
     TaskDetailView,
     TaskUpdateView,
     TaskCreateView,
+    TaskDeleteView,
 )
 
 urlpatterns = [
@@ -15,6 +16,7 @@ urlpatterns = [
     path("tasks/<int:pk>/", TaskDetailView.as_view(), name="tasks-detail"),
     path("tasks/<int:pk>/update/", TaskUpdateView.as_view(), name="tasks-update"),
     path("tasks/create/", TaskCreateView.as_view(), name="tasks-create"),
+    path("tasks/<int:pk>/confirmation-delete-task/", TaskDeleteView.as_view(), name="tasks-delete"),
 ]
 
 app_name = "manager"
