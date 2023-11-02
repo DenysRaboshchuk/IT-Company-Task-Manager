@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block content %}
+  <h1>Are you sure that you want to delete task type: <br>{{ tasktype.name }}</h1>
+  <form action="" method="post" novalidate>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input class="btn btn-danger" type="submit" value="Delete">
+    <a class="btn btn-behance" href="{% url 'manager:task-types-list' %}">Cancel</a>
+  </form>
+
+{% endblock content %}

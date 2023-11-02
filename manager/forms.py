@@ -71,3 +71,15 @@ class WorkerUpdateForm(forms.ModelForm):
     class Meta:
         model = Worker
         fields = ("username", "first_name", "last_name", "position")
+
+
+class TaskTypesSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by name of task type"})
+    )
+
+
+
