@@ -30,7 +30,7 @@ class TaskFormCreate(forms.ModelForm):
     assignees = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.prefetch_related(),
         widget=forms.CheckboxSelectMultiple,
-        required=False
+        required=False,
     )
 
     class Meta:
@@ -81,5 +81,11 @@ class TaskTypesSearchForm(forms.Form):
         widget=forms.TextInput(attrs={"placeholder": "Search by name of task type"})
     )
 
-
+class PositionSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by position"})
+    )
 

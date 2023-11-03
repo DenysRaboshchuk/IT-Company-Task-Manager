@@ -22,7 +22,10 @@ class Task(models.Model):
     ]
     name = models.CharField(max_length=255)
     deadline = models.DateField()
-    is_complited = models.BooleanField()
+    is_complited = models.BooleanField(
+        blank=True,
+        default=False,
+    )
     description = models.TextField()
     priority = models.CharField(max_length=255, choices=priority_chooses) #
     task_type = models.ForeignKey(
@@ -53,6 +56,7 @@ class Worker(AbstractUser):
     position = models.ForeignKey(
         Position,
         on_delete=models.CASCADE,
+        related_name="workers",
     )
 
     def __str__(self):

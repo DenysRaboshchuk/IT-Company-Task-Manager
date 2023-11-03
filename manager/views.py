@@ -7,8 +7,8 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from manager.forms import TaskSearchForm, TaskUpdateForm, TaskFormCreate, WorkerSearchForm, WorkerCreateForm, \
-    WorkerUpdateForm, TaskTypesSearchForm
-from manager.models import Task, Worker, TaskType
+    WorkerUpdateForm, TaskTypesSearchForm, PositionSearchForm
+from manager.models import Task, Worker, TaskType, Position
 
 
 # Create your views here.
@@ -147,3 +147,49 @@ class TaskTypesDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = TaskType
     success_url = reverse_lazy("manager:task-types-list")
     template_name = "pages/task_types_confirm_delete.html"
+
+
+class PositionListView(LoginRequiredMixin, generic.ListView):
+    model = Position
+    template_name = "pages/position_list.html"
+    paginate_by = 10
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(PositionListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = PositionSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = Position.objects.all()
+        form = PositionSearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(name__icontains=form.cleaned_data["name"])
+        return queryset
+
+
+class PositionCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("manager:position-list")
+    template_name = "pages/position_form.html"
+
+
+class PositionDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Position
+    template_name = "pages/position_detail.html"
+
+
+class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("manager:position-list")
+    template_name = "pages/position_form.html"
+
+
+class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Position
+    success_url = reverse_lazy("manager:position-list")
+    template_name = "pages/position_confirm_delete.html"
