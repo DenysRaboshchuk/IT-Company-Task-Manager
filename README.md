@@ -23,10 +23,16 @@ source venv/bin/activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser
+```
+
+Then you need to create .env file next to .env.sample. You can take .env.sample as example and insert your values
+
+Then you need only run server:
+```python
 python manage.py runserver
 ```
 
-## How it looks
+## Demo
 
 <img width="1839" alt="main_page" src="https://github.com/DenysRaboshchuk/IT-Company-Task-Manager/assets/120589625/44b7043d-a7a5-4f44-9b1a-ce528029a518">
 <img width="1907" alt="tasks_list_page" src="https://github.com/DenysRaboshchuk/IT-Company-Task-Manager/assets/120589625/5a2756b6-263e-453f-afac-50f0f221c08f">
