@@ -28,6 +28,6 @@ python manage.py runserver
 
 ## How it looks
 
-![main_page.png](..%2Fscreens%2Fmain_page.png)
-![tasks_list_page.png](..%2Fscreens%2Ftasks_list_page.png)
-![task_detail_page.png](..%2Fscreens%2Ftask_detail_page.png)
+<img width="1839" alt="main_page" src="https://github.com/DenysRaboshchuk/IT-Company-Task-Manager/assets/120589625/44b7043d-a7a5-4f44-9b1a-ce528029a518">
+<img width="1907" alt="tasks_list_page" src="https://github.com/DenysRaboshchuk/IT-Company-Task-Manager/assets/120589625/5a2756b6-263e-453f-afac-50f0f221c08f">
+<img width="1907" alt="task_detail_page" src="https://github.com/DenysRaboshchuk/IT-Company-Task-Manager/assets/120589625/d5bd4e0d-30a1-4fd3-9460-e241a28b767b">
