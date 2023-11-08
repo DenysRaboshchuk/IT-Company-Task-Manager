@@ -21,14 +21,13 @@ cd IT_Company_Task_Manager
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+```
+Then you need to create .env file next to .env.sample. You can take .env.sample as example and insert your values!<br>
+Finally, we run this commands:
+
+```python
 python manage.py migrate
 python manage.py createsuperuser
-```
-
-Then you need to create .env file next to .env.sample. You can take .env.sample as example and insert your values
-
-Then you need only run server:
-```python
 python manage.py runserver
 ```
 
