@@ -169,7 +169,7 @@ class Migration(migrations.Migration):
                 ),
                 ("name", models.CharField(max_length=255)),
                 ("deadline", models.DateField()),
-                ("is_completed", models.BooleanField(blank=True, default=False)),
+                ("is_complited", models.BooleanField(blank=True, default=False)),
                 ("description", models.TextField()),
                 (
                     "priority",

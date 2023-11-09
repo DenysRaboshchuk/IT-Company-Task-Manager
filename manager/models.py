@@ -22,7 +22,7 @@ class Task(models.Model):
     ]
     name = models.CharField(max_length=255)
     deadline = models.DateField()
-    is_completed = models.BooleanField(
+    is_complited = models.BooleanField(
         blank=True,
         default=False,
     )
