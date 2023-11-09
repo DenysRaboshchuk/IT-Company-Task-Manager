@@ -53,7 +53,7 @@
             <ul>
               {% if worker.tasks.all %}
                 {% for task in worker.tasks.all %}
-                  {% if task.is_complited %}
+                  {% if task.is_completed %}
                     <li>{{ task }} - <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-check2" viewBox="0 0 16 16">

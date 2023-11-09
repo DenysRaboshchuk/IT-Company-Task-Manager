@@ -49,7 +49,7 @@ class TaskTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ("name", "is_complited","priority", "deadline", "task_type")
+    list_display = ("name", "is_completed","priority", "deadline", "task_type")
     search_fields = ("name", )
 
 admin.site.unregister(Group)
