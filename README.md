@@ -2,6 +2,10 @@
 
 Django project to managing tasks and workers in teams and projects
 
+## Check it out
+
+[It-Company-Task-Manager deployed to render](https://it-company-task-manager-ibdh.onrender.com)
+
 ## Features
 Authentication functionality for Worker/User
 Managing teams & tasks & project directly from website
